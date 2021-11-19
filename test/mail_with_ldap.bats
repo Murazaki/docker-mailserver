@@ -51,7 +51,7 @@ function setup_file() {
     -e DOVECOT_TLS=no \
     -e DOVECOT_PASS_FILTER="(&(objectClass=PostfixBookMailAccount)(uniqueIdentifier=%n))" \
     -e DOVECOT_USER_FILTER="(&(objectClass=PostfixBookMailAccount)(uniqueIdentifier=%n))" \
-    -e DOVECOT_USER_ATTRS="=uid=%{ldap:UID},=gid=5000,=home=/var/mail/%Ln,=mail=maildir:~/Maildir" \
+    -e DOVECOT_USER_ATTRS="=uid=%{ldap:UID},=gid=5000,=home=/var/mail/%Ld/%Ln,=mail=maildir:~/Maildir" \
     -e DOVECOT_PASS_ATTRS="UID=user,userPassword=password" \
     -e REPORT_RECIPIENT=1 \
     -e ENABLE_SASLAUTHD=1 \

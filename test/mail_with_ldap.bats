@@ -159,7 +159,7 @@ function teardown_file() {
 @test "checking dovecot: ldap mail delivery works" {
   run docker exec mail_with_ldap /bin/sh -c "sendmail -f user@external.tld some.user@${FQDN_LOCALHOST_A} < /tmp/docker-mailserver-test/email-templates/test-email.txt"
   sleep 10
-  run docker exec mail_with_ldap /bin/sh -c "ls -A /var/mail/${FQDN_LOCALHOST_A}/some.user/new | wc -l"
+  run docker exec mail_with_ldap /bin/sh -c "ls -A /var/mail/${FQDN_LOCALHOST_A}/some.user/Maildir/new | wc -l"
   assert_success
   assert_output 1
 }
@@ -167,7 +167,7 @@ function teardown_file() {
 @test "checking dovecot: ldap mail delivery works for a different domain then the mailserver" {
   run docker exec mail_with_ldap /bin/sh -c "sendmail -f user@external.tld some.other.user@${FQDN_LOCALHOST_B} < /tmp/docker-mailserver-test/email-templates/test-email.txt"
   sleep 10
-  run docker exec mail_with_ldap /bin/sh -c "ls -A /var/mail/${FQDN_LOCALHOST_A}/some.other.user/new | wc -l"
+  run docker exec mail_with_ldap /bin/sh -c "ls -A /var/mail/${FQDN_LOCALHOST_A}/some.other.user/Maildir/new | wc -l"
   assert_success
   assert_output 1
 }
